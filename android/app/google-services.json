@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "483139142248",
+    "project_id": "ezzymart-72658",
+    "storage_bucket": "ezzymart-72658.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483139142248:android:534264592171daac6e31dd",
+        "android_client_info": {
+          "package_name": "com.example.ezzy_mart_seller_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1memYawNNm8Jh6AqZZIMqbmHbdbVoDRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483139142248:android:97da4cbf80b7d6f76e31dd",
+        "android_client_info": {
+          "package_name": "com.example.my_mart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1memYawNNm8Jh6AqZZIMqbmHbdbVoDRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
