@@ -9,13 +9,13 @@ const appname = "eMart Seller App",
 const appversion = "Version 1.0.0";
 const credits = "@Raz Devs LLC";
 
-const emailHint = "raz123@gmail.com";
+const emailHint = "eg, vendor@gmail.com";
 
 const passwordHint = "********";
 const retypePass = "ReType Password";
 const name = "Name";
 const nameHint = "Sheeraz";
-const forgetPassword = "Forget Pasword";
+const forgetPassword = "Forget Pasword?";
 
 const createNewAcc = "Or Create New Account";
 const loginWith = "Login With";
