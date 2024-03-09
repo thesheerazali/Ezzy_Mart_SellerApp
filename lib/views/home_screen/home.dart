@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../controllers/home_controller.dart';
 import '../order_screen/orders_screen.dart';
 import '../product_screen/product_screen.dart';
-import '../setting_screen/setting_screen.dart';
+import '../setting_screen/profile_screen.dart';
 import 'home_screen.dart';
 
 class Home extends StatelessWidget {
