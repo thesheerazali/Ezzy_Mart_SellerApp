@@ -1,6 +1,8 @@
 import 'package:ezzy_mart_seller_app/const/const.dart';
+import 'package:ezzy_mart_seller_app/views/home_screen/home.dart';
+import 'package:ezzy_mart_seller_app/views/widgets/out_button.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,7 +10,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: purpleColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -31,13 +34,46 @@ class LoginScreen extends StatelessWidget {
                       .padding(const EdgeInsets.all(8))
                       .make(),
                   10.widthBox,
-                  boldText(text: appname, size: 18.0)
+                  boldText(text: appname, size: 20.0)
                 ],
               ),
-              20.heightBox,
+              40.heightBox,
               Column(
                 children: [
-                  TextField(),
+                  const TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: emailHint,
+                        prefixIcon: Icon(Icons.email, color: purpleColor)),
+                  ),
+                  10.heightBox,
+                  const TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: passwordHint,
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: purpleColor,
+                        )),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                        onPressed: () {},
+                        child: normalText(
+                            text: forgetPassword, color: purpleColor)),
+                  ),
+                  20.heightBox,
+                  SizedBox(
+                    width: context.screenWidth - 100,
+                    child: ourButton(
+                        color: purpleColor,
+                        onPress: () {
+                          Get.to(() => Home());
+                        },
+                        textColor: white,
+                        title: login),
+                  ),
                 ],
               )
                   .box
@@ -45,7 +81,15 @@ class LoginScreen extends StatelessWidget {
                   .rounded
                   .outerShadowMd
                   .padding(const EdgeInsets.all(8))
-                  .make()
+                  .make(),
+              10.heightBox,
+              Center(
+                child: normalText(text: anyProblem, color: lightGrey),
+              ),
+              const Spacer(),
+              Center(
+                child: normalText(text: credits, color: lightGrey),
+              ),
             ],
           ),
         ),
