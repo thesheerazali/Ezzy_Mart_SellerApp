@@ -38,6 +38,9 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               40.heightBox,
+              normalText(
+                  text: "Login to your account", size: 18.0, color: lightGrey),
+              10.heightBox,
               Column(
                 children: [
                   const TextField(

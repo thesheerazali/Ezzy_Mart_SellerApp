@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'views/auth_screen/login_screen.dart';
+import 'views/auth/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
       title: appname,
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.transparent, elevation: 0.0)),
+              iconTheme: IconThemeData(color: white),
+              backgroundColor: Colors.transparent,
+              elevation: 0.0)),
       home: const LoginScreen(),
     );
   }

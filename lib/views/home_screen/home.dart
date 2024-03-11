@@ -3,9 +3,9 @@ import 'package:ezzy_mart_seller_app/const/const.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/home_controller.dart';
-import '../order_screen/orders_screen.dart';
-import '../product_screen/product_screen.dart';
-import '../setting_screen/setting_screen.dart';
+import '../orders/orders_screen.dart';
+import '../product/product_screen.dart';
+import '../profile/profile_screen.dart';
 import 'home_screen.dart';
 
 class Home extends StatelessWidget {

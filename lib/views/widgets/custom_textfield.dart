@@ -1,27 +1,19 @@
+import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
+
 import '../../const/const.dart';
 
-Widget customTextField({String? title, String? hint, controller, isPass}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      title!.text.color(redColor).semiBold.size(16).make(),
-      5.heightBox,
-      TextFormField(
-        obscureText: isPass,
-        controller: controller,
-        decoration: InputDecoration(
-            hintText: hint,
-            hintStyle:
-                const TextStyle( color: textfieldGrey),
-            isDense: true,
-            fillColor: lightGrey,
-            filled: true,
-            border: InputBorder.none,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: redColor),
-            )),
-      ),
-      7.heightBox
-    ],
-  );
+Widget customTextField({hint, label, controller, isDesc = false}) {
+  return TextFormField(
+      maxLines: isDesc ? 4 : 1,
+      decoration: InputDecoration(
+          isDense: true,
+          label: normalText(text: label),
+          hintText: hint,
+          hintStyle: const TextStyle(color: lightGrey),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: white)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: white))));
 }

@@ -4,7 +4,11 @@ const appname = "eMart Seller App",
     email = "Email",
     password = "Password",
     forgotPassword = "Forgot Password",
-    anyProblem = "In case of any difficulty, contact administration";
+    anyProblem = "In case of any difficulty, contact administration",
+    products = "Products",
+    orders = "Orders",
+    rating = "Ratings",
+    totalSale = "Total Sale";
 
 const appversion = "Version 1.0.0";
 const credits = "@Raz Devs LLC";

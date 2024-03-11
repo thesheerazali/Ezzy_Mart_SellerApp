@@ -15,5 +15,5 @@ Widget ourButton({
         padding: const EdgeInsets.all(12),
       ),
       onPressed: onPress,
-      child: normalText(text: title, size: 16.0));
+      child: normalText(text: title, size: 16.0, color: textColor));
 }
