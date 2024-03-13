@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../const/colors.dart';
 import '../../const/const.dart';
 import '../widgets/text_widget.dart';
 
@@ -159,9 +156,10 @@ class ProductDetailScreen extends StatelessWidget {
                   20.heightBox,
                   boldText(text: "Description", size: 16.0, color: fontGrey),
                   10.heightBox,
+
                   normalText(
                       text:
-                          "GHDjhdhjchjfjhvhjbmmvmjh hjgccvjhgg hgjvhu vfutd,ufj y itif",
+                          "GHDjhdhjchjfjhvhjbmmvmjh hjgccvjhgg hgjvhu vfutd,ufj y itifg  jdsbfnsfhzx chksbv hbhg",
                       color: fontGrey)
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:ezzy_mart_seller_app/views/product/add_product_screen.dart';
 import 'package:ezzy_mart_seller_app/views/product/product_Detail_screen.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/appbar.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,9 @@ class ProductScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => const AddProduct());
+        },
         child: const Icon(
           Icons.add,
           color: white,
