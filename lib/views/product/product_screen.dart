@@ -1,4 +1,6 @@
+import 'package:ezzy_mart_seller_app/views/product/product_Detail_screen.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/appbar.dart';
+import 'package:get/get.dart';
 
 import '../../const/const.dart';
 import '../widgets/text_widget.dart';
@@ -26,6 +28,9 @@ class ProductScreen extends StatelessWidget {
                 children: List.generate(
                     20,
                     (index) => ListTile(
+                          onTap: () {
+                            Get.to(() => const ProductDetailScreen());
+                          },
                           leading: Image.asset(imgProduct),
                           title: boldText(
                               text: "Product Title",
