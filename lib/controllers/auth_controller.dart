@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../const/const.dart';
-import '../const/firebase_const.dart';
 
 class AuthController extends GetxController {
   var emailController = TextEditingController();
@@ -25,26 +24,12 @@ class AuthController extends GetxController {
     return userCredential;
   }
 
-  //Sign In Method
-
-  Future<UserCredential?> signUpMethod({email, password, context}) async {
-    UserCredential? userCredential;
-
-    try {
-      userCredential = await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      VxToast.show(context, msg: e.toString());
-    }
-    return userCredential;
-  }
-
   //Store User Data
 
   storeUserData({name, password, email}) async {
     final uid = currentUser?.uid;
     DocumentReference store =
-        firestore.collection(usersCollection).doc(currentUser!.uid);
+        firestore.collection(vendorsCollection).doc(currentUser!.uid);
 
     if (uid != null) {
       store.set({
