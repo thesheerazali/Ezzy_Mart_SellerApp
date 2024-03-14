@@ -15,7 +15,7 @@ class ProductDetailScreen extends StatelessWidget {
               Icons.arrow_back,
               color: fontGrey,
             )),
-        title: boldText(text: "Product Detail", color: darkGrey, size: 16.0),
+        title: boldText(text: "Product Detail", color: fontGrey, size: 16.0),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -51,6 +51,17 @@ class ProductDetailScreen extends StatelessWidget {
                   //     .make(),
 
                   boldText(text: "Product Title", color: fontGrey, size: 16.0),
+
+                  10.heightBox,
+
+                  Row(
+                    children: [
+                      boldText(text: "Category", color: fontGrey, size: 16.0),
+                      10.widthBox,
+                      normalText(
+                          text: "Sub-Category", color: fontGrey, size: 16.0)
+                    ],
+                  ),
 
                   10.heightBox,
 

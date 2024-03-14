@@ -32,7 +32,7 @@ class AddProduct extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             customTextField(label: "Product Name", hint: "eg, BMW"),
@@ -68,12 +68,16 @@ class AddProduct extends StatelessWidget {
               runSpacing: 8.0,
               children: List.generate(
                   9,
-                  (index) => VxBox()
-                      .color(Vx.randomPrimaryColor)
-                      .roundedFull
-                      .size(50, 50)
-                      .make()),
-            )
+                  (index) => Stack(alignment: Alignment.center, children: [
+                        VxBox()
+                            .color(Vx.randomPrimaryColor)
+                            .roundedFull
+                            .size(50, 50)
+                            .make(),
+                        const Icon(Icons.done, color: white)
+                      ])),
+            ),
+            20.heightBox,
           ]),
         ),
       ),
