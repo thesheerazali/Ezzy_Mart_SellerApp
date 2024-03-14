@@ -1,3 +1,5 @@
+import 'package:ezzy_mart_seller_app/controllers/auth_controller.dart';
+import 'package:ezzy_mart_seller_app/views/auth/login_screen.dart';
 import 'package:ezzy_mart_seller_app/views/messages/messages_screen.dart';
 import 'package:ezzy_mart_seller_app/views/profile/edit_profile_screen.dart';
 import 'package:ezzy_mart_seller_app/views/shop_setting/shop_setting_screen.dart';
@@ -11,6 +13,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
     return Scaffold(
       backgroundColor: purpleColor,
       appBar: AppBar(
@@ -20,7 +23,13 @@ class SettingScreen extends StatelessWidget {
           IconButton(
               onPressed: () => Get.to(() => const EditProfileScreen()),
               icon: const Icon(Icons.edit)),
-          TextButton(onPressed: () {}, child: normalText(text: "Log Out"))
+          TextButton(
+              onPressed: () async {
+                await Get.find<AuthController>()
+                    .signOutMethod(context: context);
+                Get.offAll(() => LoginScreen());
+              },
+              child: normalText(text: "Log Out"))
         ],
       ),
       body: Padding(

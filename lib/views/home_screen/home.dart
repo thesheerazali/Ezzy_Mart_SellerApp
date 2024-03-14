@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
     ];
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: purpleColor,
