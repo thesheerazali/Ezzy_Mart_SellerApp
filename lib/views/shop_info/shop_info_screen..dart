@@ -5,7 +5,6 @@ import 'package:ezzy_mart_seller_app/controllers/profile_controller.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/custom_textfield.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/loading_indicator.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../services/store_services.dart';
