@@ -25,7 +25,9 @@ class SettingScreen extends StatelessWidget {
         title: boldText(text: "Profile", size: 20.0),
         actions: [
           IconButton(
-              onPressed: () => Get.to(() => const EditProfileScreen()),
+              onPressed: () => Get.to(() => EditProfileScreen(
+                    userName: controller.snapshotData['vendor_name'],
+                  )),
               icon: const Icon(Icons.edit)),
           TextButton(
               onPressed: () async {
@@ -38,8 +40,8 @@ class SettingScreen extends StatelessWidget {
               child: normalText(text: "Log Out"))
         ],
       ),
-      body: FutureBuilder(
-        future: StoreServices.getProfile(currentUser!.uid),
+      body: StreamBuilder(
+        stream: StoreServices.getProfile(currentUser!.uid),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return loadingIndicator(circleColor: white);
@@ -48,12 +50,23 @@ class SettingScreen extends StatelessWidget {
             return Column(
               children: [
                 ListTile(
-                  leading: Image.asset(imgProduct)
-                      .box
-                      .roundedFull
-                      .clip(Clip.antiAlias)
-                      .make(),
+                  leading: controller.snapshotData['imageUrl'] == ''
+                      ? Image.asset(imgProduct, width: 100, fit: BoxFit.cover)
+                          .box
+                          .roundedFull
+                          .clip(Clip.antiAlias)
+                          .make()
+                      : Image.network(
+                          controller.snapshotData['imageUrl'],
+                          width: 100,
+                        ).box.roundedFull.clip(Clip.antiAlias).make(),
+                  // leading: Image.asset(imgProduct)
+                  //     .box
+                  //     .roundedFull
+                  //     .clip(Clip.antiAlias)
+                  //     .make(),
                   title: boldText(
+                      size: 16.0,
                       text: "${controller.snapshotData['vendor_name']}"),
                   subtitle:
                       normalText(text: "${controller.snapshotData['email']}"),

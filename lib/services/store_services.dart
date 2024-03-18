@@ -5,6 +5,6 @@ class StoreServices {
     return firestore
         .collection(vendorsCollection)
         .where('vendor_id', isEqualTo: uid)
-        .get();
+        .snapshots();
   }
 }
