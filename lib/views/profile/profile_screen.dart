@@ -5,7 +5,7 @@ import 'package:ezzy_mart_seller_app/services/store_services.dart';
 import 'package:ezzy_mart_seller_app/views/auth/login_screen.dart';
 import 'package:ezzy_mart_seller_app/views/messages/messages_screen.dart';
 import 'package:ezzy_mart_seller_app/views/profile/edit_profile_screen.dart';
-import 'package:ezzy_mart_seller_app/views/shop_setting/shop_setting_screen.dart';
+import 'package:ezzy_mart_seller_app/views/shop_info/shop_info_screen..dart';
 import 'package:ezzy_mart_seller_app/views/widgets/loading_indicator.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
 import 'package:get/get.dart';
@@ -83,7 +83,8 @@ class SettingScreen extends StatelessWidget {
                                 profileButtnIcons[index],
                                 color: white,
                               ),
-                              title: boldText(text: profileButtonTitle[index]),
+                              title: boldText(
+                                  text: profileButtonTitle[index], size: 16.0),
                               onTap: () {
                                 switch (index) {
                                   case 0:
