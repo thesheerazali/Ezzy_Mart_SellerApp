@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ezzy_mart_seller_app/controllers/auth_controller.dart';
+import 'package:ezzy_mart_seller_app/controllers/profile_controller.dart';
+import 'package:ezzy_mart_seller_app/services/store_services.dart';
 import 'package:ezzy_mart_seller_app/views/auth/login_screen.dart';
 import 'package:ezzy_mart_seller_app/views/messages/messages_screen.dart';
 import 'package:ezzy_mart_seller_app/views/profile/edit_profile_screen.dart';
 import 'package:ezzy_mart_seller_app/views/shop_setting/shop_setting_screen.dart';
+import 'package:ezzy_mart_seller_app/views/widgets/loading_indicator.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +17,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AuthController());
+    var controller = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: purpleColor,
       appBar: AppBar(
@@ -25,59 +29,71 @@ class SettingScreen extends StatelessWidget {
               icon: const Icon(Icons.edit)),
           TextButton(
               onPressed: () async {
+                Get.offAll(() => const LoginScreen());
+
                 await Get.find<AuthController>()
                     .signOutMethod(context: context);
-                Get.offAll(() => LoginScreen());
+                Get.deleteAll();
               },
               child: normalText(text: "Log Out"))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            ListTile(
-              leading: Image.asset(imgProduct)
-                  .box
-                  .roundedFull
-                  .clip(Clip.antiAlias)
-                  .make(),
-              title: boldText(text: "Vendor Name"),
-              subtitle: normalText(text: "vendor2@gmail.com"),
-            ),
-            const Divider(),
-            10.heightBox,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: List.generate(
-                    profileButtnIcons.length,
-                    (index) => ListTile(
-                          leading: Icon(
-                            profileButtnIcons[index],
-                            color: white,
-                          ),
-                          title: boldText(text: profileButtonTitle[index]),
-                          onTap: () {
-                            switch (index) {
-                              case 0:
-                                Get.to(() => const ShopSetting());
+      body: FutureBuilder(
+        future: StoreServices.getProfile(currentUser!.uid),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return loadingIndicator(circleColor: white);
+          } else {
+            controller.snapshotData = snapshot.data!.docs[0];
+            return Column(
+              children: [
+                ListTile(
+                  leading: Image.asset(imgProduct)
+                      .box
+                      .roundedFull
+                      .clip(Clip.antiAlias)
+                      .make(),
+                  title: boldText(
+                      text: "${controller.snapshotData['vendor_name']}"),
+                  subtitle:
+                      normalText(text: "${controller.snapshotData['email']}"),
+                ),
+                const Divider(),
+                10.heightBox,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: List.generate(
+                        profileButtnIcons.length,
+                        (index) => ListTile(
+                              leading: Icon(
+                                profileButtnIcons[index],
+                                color: white,
+                              ),
+                              title: boldText(text: profileButtonTitle[index]),
+                              onTap: () {
+                                switch (index) {
+                                  case 0:
+                                    Get.to(() => const ShopSetting());
 
-                                break;
-                              case 1:
-                                Get.to(() => const MessagesScreen());
+                                    break;
+                                  case 1:
+                                    Get.to(() => const MessagesScreen());
 
-                                break;
+                                    break;
 
-                              default:
-                            }
-                          },
-                        )),
-              ),
-            )
-          ],
-        ),
+                                  default:
+                                }
+                              },
+                            )),
+                  ),
+                )
+              ],
+            );
+          }
+        },
       ),
+      //
     );
   }
 }

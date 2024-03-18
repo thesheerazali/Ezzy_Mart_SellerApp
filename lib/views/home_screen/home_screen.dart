@@ -12,47 +12,52 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBarWidget("Dashboard"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                dashBoardButton(context,
-                    count: 75, title: products, icon: icProducts),
-                dashBoardButton(context,
-                    count: 75, title: orders, icon: icorders)
-              ],
-            ),
-            10.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                dashBoardButton(context,
-                    count: 75, title: rating, icon: icStar),
-                dashBoardButton(context,
-                    count: 75, title: totalSale, icon: icSale)
-              ],
-            ),
-            10.heightBox,
-            Divider(),
-            10.heightBox,
-            boldText(text: "Popoler Products", color: fontGrey, size: 16.0),
-            20.heightBox,
-            ListView(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                children: List.generate(
-                    3,
-                    (index) => ListTile(
-                        leading: Image.asset(imgProduct),
-                        title: boldText(
-                            text: "Product Title", color: fontGrey, size: 14.0),
-                        subtitle: normalText(text: "\$40", color: darkGrey))))
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  dashBoardButton(context,
+                      count: 75, title: products, icon: icProducts),
+                  dashBoardButton(context,
+                      count: 75, title: orders, icon: icorders)
+                ],
+              ),
+              10.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  dashBoardButton(context,
+                      count: 75, title: rating, icon: icStar),
+                  dashBoardButton(context,
+                      count: 75, title: totalSale, icon: icSale)
+                ],
+              ),
+              10.heightBox,
+              Divider(),
+              10.heightBox,
+              boldText(text: "Popoler Products", color: fontGrey, size: 16.0),
+              20.heightBox,
+              ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: List.generate(
+                      10,
+                      (index) => ListTile(
+                          leading: Image.asset(imgProduct),
+                          title: boldText(
+                              text: "Product Title",
+                              color: fontGrey,
+                              size: 14.0),
+                          subtitle: normalText(text: "\$40", color: darkGrey))))
+            ],
+          ),
         ),
       ),
     );

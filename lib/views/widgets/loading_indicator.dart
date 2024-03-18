@@ -1,6 +1,9 @@
 import '../../const/const.dart';
-Widget loadingIndicator() {
-  return const CircularProgressIndicator(
-    valueColor: AlwaysStoppedAnimation(redColor),
+
+Widget loadingIndicator({circleColor = purpleColor}) {
+  return Center(
+    child: CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(circleColor),
+    ),
   );
 }
