@@ -1,12 +1,28 @@
 import 'package:ezzy_mart_seller_app/const/const.dart';
+import 'package:ezzy_mart_seller_app/controllers/orders_controller.dart';
 import 'package:ezzy_mart_seller_app/views/orders/components/order_placed.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/out_button.dart';
 import 'package:ezzy_mart_seller_app/views/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart' as intl;
 
-class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({super.key});
+class OrderDetailsScreen extends StatefulWidget {
+  final dynamic data;
+  const OrderDetailsScreen({super.key, this.data});
+
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  var controller = Get.find<OrdersController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getOrders(widget.data);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,18 +100,18 @@ class OrderDetailsScreen extends StatelessWidget {
                   boldText(text: "Order Details", color: fontGrey, size: 16.0),
                   orderPlacedDetail(
                     title1: 'Order Code',
-                    d1: " data['order_code']",
+                    d1: widget.data['order_code'],
                     title2: 'Shipping Method',
-                    d2: " data['shipping_method']",
+                    d2: widget.data['shipping_method'],
                   ),
                   orderPlacedDetail(
                     title1: 'Order Date',
-                    d1: DateTime.now(),
-                    // d1: intl.DateFormat()
-                    //     .add_yMd()
-                    //     .format(data['order_date'].toDate()),
+                    // d1: DateTime.now(),
+                    d1: intl.DateFormat()
+                        .add_yMMMd()
+                        .format(widget.data['order_date'].toDate()),
                     title2: 'Payment Method',
-                    d2: "data['payment_method']",
+                    d2: widget.data['payment_method'],
                   ),
                   orderPlacedDetail(
                     title1: 'Payment Status',
@@ -120,17 +136,25 @@ class OrderDetailsScreen extends StatelessWidget {
                                 boldText(
                                     text: "Shipping Adress",
                                     color: purpleColor),
-                                "Name: {data['order_by_name']}".text.make(),
-                                "Email: {data['order_by_email']}".text.make(),
-                                "Address: {data['order_by_address']}"
+                                "Name: ${widget.data['order_by_name']}"
                                     .text
                                     .make(),
-                                "City: {data['order_by_city']}".text.make(),
-                                "State: {data['order_by_state']}".text.make(),
+                                "Email: ${widget.data['order_by_email']}"
+                                    .text
+                                    .make(),
+                                "Address: ${widget.data['order_by_address']}"
+                                    .text
+                                    .make(),
+                                "City: ${widget.data['order_by_city']}"
+                                    .text
+                                    .make(),
+                                "State: ${widget.data['order_by_state']}"
+                                    .text
+                                    .make(),
                                 "Phone No: {data['order_by_phone']}"
                                     .text
                                     .make(),
-                                "Postal Code: {data['order_by_postal']}"
+                                "Postal Code: ${widget.data['order_by_postal']}"
                                     .text
                                     .make(),
                               ],
@@ -146,7 +170,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                 boldText(
                                     text: "Total Amount", color: purpleColor),
                                 boldText(
-                                    text: "\$300.0",
+                                    text: "\$${widget.data['total_amount']}",
                                     color: redColor,
                                     size: 16.0),
                                 // 60.heightBox,
@@ -181,14 +205,15 @@ class OrderDetailsScreen extends StatelessWidget {
               ListView(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                children: List.generate(3, (index) {
+                children: List.generate(controller.orders.length, (index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       orderPlacedDetail(
-                          title1: "Pro-Title: {data['orders'][index]['title']}",
-                          title2: "Qty: x{data['orders'][index]['qty']}",
-                          d1: "Pro-Price: {data['orders'][index]['tprice']}",
+                          title1:
+                              "Pro-Title: ${controller.orders[index]['title']}",
+                          title2: "Qty: x${controller.orders[index]['qty']}",
+                          d1: "Pro-Price: ${controller.orders[index]['tprice']}",
                           d2: "Refundable"),
                       Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -200,7 +225,7 @@ class OrderDetailsScreen extends StatelessWidget {
                               Container(
                                 height: 20,
                                 width: 30,
-                                color: purpleColor,
+                                color: Color(controller.orders[index]['color']),
                               ),
                             ],
                           )),

@@ -14,4 +14,11 @@ class StoreServices {
         .where('toid', isEqualTo: uid)
         .snapshots();
   }
+
+  static getOrders(uid) {
+    return firestore
+        .collection(orderCollection)
+        .where('vendors', arrayContains: uid)
+        .snapshots();
+  }
 }
